@@ -3,3 +3,43 @@
 3. npm i --save-dev sequelize-cli nodemon
 4. npx sequelize-cli init
 5. setup database dulu
+6. npx sequelize-cli db:create
+7. buat schema dulu
+8. buat table dan column
+formatnya >>> npx sequelize-cli model:generate --name (nama table) --attributes (nama column:typedata)
+
+Table:Users
+npx sequelize-cli model:generate --name User --attributes username:string,password:string,role:string
+
+Table:Profiles
+npx sequelize-cli model:generate --name Profile --attributes name:string,address:string,phone:string
+
+migrasi FK: UserId (add-userid-to-profile)
+pakai await queryInterface.addColumn dan await queryInterface.removeColumn
+
+Table: Items
+npx sequelize-cli model:generate --name Item --attributes name:string,stock:integer,imageURL:string,description:string,condition:string,price:integer
+
+migrasi FK: UserId (add-userid-to-item)
+
+Table: Categories
+npx sequelize-cli model:generate --name Category --attributes name:string 
+
+migrasi FK: UserId (add-userid-to-categories)
+
+isi kolum nya name:string karena di kolom nama ada clothes, electronics, accessories, automotives, sports
+
+Table: itemCategories
+npx sequelize-cli model:generate --name ItemCategory --attributes ItemId:integer,CategoryId:integer
+
+
+9. Migrasi semua column
+npx sequelize-cli db:migrate 
+npx sequelize-cli db:migrate:undo:all (buat undo)
+
+10. Sekarang buat seedersnya
+(kalau bisa semua datanya dibuat json saja)
+
+npx sequelize-cli seed:generate --name (nama seedernya)
+
+Jangan lupa di seeders kalau ada data json dibaca dulu lalu di map terus di await
