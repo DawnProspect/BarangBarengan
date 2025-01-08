@@ -1,0 +1,5 @@
+1. npm init -y
+2. npm install ejs pg express sequelize
+3. npm i --save-dev sequelize-cli nodemon
+4. npx sequelize-cli init
+5. setup database dulu
