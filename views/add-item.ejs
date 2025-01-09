@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Add New Items</h1>
-            <form action="/itemsforsale/add" method="POST">
+            <form action="/categories/<%=id%>/add" method="POST">
                 <div>
                     <label for="name">Nama Barang:</label>
                     <input type="text" name="name" id="name">
@@ -37,8 +37,7 @@
                     <label for="price">Harga Barang:</label>
                     <input type="number" name="price" id="price">
                 </div>
-                <!-- ! Kalau mau userId di default jadi 2 pakai hooks -->
-                <button type="submit">Tambahkan Barang</button>
+                <a href="/categories/<%=id%>/add"><button>Tambahkan data</button></a>
         </form>
 </body>
 </html>

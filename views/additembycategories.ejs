@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store Items</title>
+    <title>Add Category</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,70 +56,75 @@
 
         .container {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
+            height: 100vh;
             padding: 2rem;
         }
 
-        .card {
-            background: #fff;
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            margin: 1rem;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .card-body {
-            padding: 1rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
             text-align: center;
         }
 
-        .card-title {
-            font-size: 1.5rem;
+        .form-container h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-size: 1rem;
             color: #333;
             margin-bottom: 0.5rem;
+            display: block;
         }
 
-        .card-description {
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 1.5rem;
             font-size: 1rem;
-            color: #666;
-            margin-bottom: 1rem;
+            color: #333;
+            transition: border 0.3s;
         }
 
-        .card-button {
+        select:focus {
+            border-color: #6e8efb;
+        }
+
+        input[type="submit"] {
             background: #6e8efb;
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 5px;
             cursor: pointer;
-            text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: background 0.3s;
         }
 
-        .card-button:hover {
+        input[type="submit"]:hover {
             background: #5a7de2;
         }
 
-        .header {
+        .footer {
             text-align: center;
-            font-size: 2rem;
+            font-size: 1rem;
+            color: #666;
             margin-top: 2rem;
-            margin-bottom: 2rem;
-            color: white;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 <body>
+
     <nav>
         <div class="logo">E-Commerce</div>
         <ul>
@@ -130,17 +135,24 @@
         </ul>
     </nav>
 
-    <div class="header">Barang Barengan</div>
     <div class="container">
-        <% stores.forEach((el) => { %>
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title"><%= el.name %></div>
-                    <div class="card-description">Discover various items in <%= el.name %>.</div>
-                    <a href="/categories/<%= el.id %>" class="card-button">DETAIL ITEMS</a>
-                </div>
-            </div>
-        <% }) %>
+        <div class="form-container">
+            <h2>Add Category to Item</h2>
+            <form action="/itemsforsale/categories/<%= id%>/add" method="POST">
+                <label for="category">Category Barang</label>
+                <select name="category" id="category">
+                    <% stores.forEach((el) => { %>
+                        <option value="<%=el.id%>"><%=el.name%></option>
+                    <% }) %>
+                </select>
+                <input type="submit" value="Add Category">
+            </form>
+        </div>
     </div>
+
+    <div class="footer">
+        &copy; 2025 E-Commerce. All rights reserved.
+    </div>
+
 </body>
 </html>

@@ -4,20 +4,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Items</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://images8.alphacoders.com/135/1354012.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #6e8efb;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 1rem;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .card-detail {
+            font-size: 0.8rem;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+        .card-price {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
-    <%=JSON.stringify(stores)  %>
-    <table border="1">
-        <tr>
-            <th>ImageUrl</th>
-            <th>Stock</th>
-            <th>Description</th>
-            <th>Condition</th>
-            <th>Price</th>
-        </tr>
-            <tr>
-            </tr>
-    </table>
-    
+    <nav>
+        <div class="logo">E-Commerce</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="header">Item Details</div>
+    <div class="container">
+        <% stores.ItemCategories.forEach((el) => { %>
+            <div class="card">
+                <img src="<%= el.Item.imageURL %>" alt="Item Image">
+                <div class="card-body">
+                    <div class="card-title">Stock: <%= el.Item.stock %></div>
+                    <div class="card-detail">Condition: <%= el.Item.condition %></div>
+                    <div class="card-description"><%= el.Item.description %></div>
+                    <div class="card-price">Price: $<%= el.Item.price %></div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
 </body>
 </html>

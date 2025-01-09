@@ -1,7 +1,7 @@
 const { Items, Categories, ItemCategories } = require("../models")
 
 class Controller {
-    // * route / untuk menampilkan halaman home
+    // * route / untuk menampilkan halaman home // * Dipakai
     static async goToHome(req, res) {
         try {
             res.redirect("/home")
@@ -9,7 +9,7 @@ class Controller {
             res.send(error)
         }
     }
-    // * Bagian untuk menampilkan homepage
+    // * Bagian untuk menampilkan homepage // * Dipakai
     static async home(req, res) {
         try {
             res.render("homepage")
@@ -26,18 +26,15 @@ class Controller {
             res.send(error)
         }
     }
-    static async getCategoryById(req, res) {
+    static async getCategoryById(req, res) { //* Bagian nampilin detail category berdasarkan id
         try {
             const id = req.params.id
-            const stores = await Items.findAll({
+            const stores = await Categories.findByPk(id, {
                 include: [
                     {
                         model: ItemCategories,
                         include: {
-                            model: Categories,
-                            where: {
-                                id: id
-                            }
+                            model: Items
                         }
                     }
                 ]
@@ -47,10 +44,68 @@ class Controller {
             res.send(error)
         }
     }
-    static async getAllItems(req, res) {
+
+    static async addItembyCategoryPage(req, res) {
         try {
+            const stores = await Categories.findAll()
+            const id = req.params.id
+            res.render("add-item", { stores , id})
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    static async addItembyCategoryData(req, res) {
+        try {
+            const id  = req.params.id;
+            const { name, stock, imageURL, description, condition, price} = req.body
+           await Items.create({
+                name,
+                stock,
+                imageURL,
+                description,
+                condition,
+                price,
+            })
+            res.redirect(`/categories/${id}`)
+        } catch (error) {
+            res.send(error)
+            console.log(error)
+        }
+    }
+
+    static async addItemtoCategoryPage(req, res) {
+        try {
+            const stores = await Categories.findAll()
+            const id = req.params.id
+            res.render("additembycategories", { stores, id });
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async addItemtoCategoryData(req, res){ 
+        try {
+            const id = req.params.id;
+            const { category } = req.body
+            await ItemCategories.create({
+                CategoryId: category,
+                ItemId: id
+            })
+            res.redirect(`/categories`)
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    // * Dipakai
+    static async getAllItems(req, res) { //* Bagian nampilin semua items yang dijual
+        try {
+            const id = req.params.id
             const stores = await Items.findAll()
-            res.render("all-items", { stores })
+            res.render("all-items", { stores , id})
         } catch (error) {
             res.send(error)
         }

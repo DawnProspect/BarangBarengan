@@ -16,15 +16,21 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   }
+  // Validasi disini
   Items.init({
     name: DataTypes.STRING,
     stock: DataTypes.INTEGER,
-    imageURL: DataTypes.STRING,
+    imageURL: DataTypes.INTEGER,
     description: DataTypes.STRING,
     condition: DataTypes.STRING,
     price: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER
   }, {
+    // Tambahin hooks disini
+    hooks: {
+      beforeCreate: (instance, options) => {
+      }
+    },
     sequelize,
     modelName: 'Items',
   });

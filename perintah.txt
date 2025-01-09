@@ -49,3 +49,132 @@ Jangan lupa di seeders kalau ada data json dibaca dulu lalu di map terus di awai
 Catatan:
 Users belum ditentuin id nya
 ItemCategories juga belum ditentuin
+
+Validasi:
+
+Items.init({
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Name is required"
+            },
+            notNull: {
+                msg: "Name is required"
+            },
+        },
+    },
+    stock: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Stock is required"
+            },
+            notNull: {
+                msg: "Stock is required"
+            },
+        },
+    }, 
+    imageURL: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Image URL is required"
+            },
+            notNull: {
+                msg: "Image URL is required"
+            },
+        },
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull : false,
+        validate: {
+            notEmpty: {
+                msg: "Description is required"
+            },
+            notNull: {
+                msg: "Description is required"
+            },
+        },
+    },
+    condition: {
+        type: DataTypes.STRING,
+        allowNull : false,
+        validate: {
+            notEmpty: {
+                msg: "Condition is required"
+            },
+            notNull: {
+                msg: "Condition is required"
+            },
+        },
+    },
+    price: {
+        type: DataTypes.INTEGER,
+        allowNull : false,
+        validate: {
+            notNull: {
+                msg: "Condition is required"
+            },
+        },
+    },
+    UserId: DataTypes.INTEGER
+  }, {
+    // Tambahin hooks disini
+    hooks: {
+      beforeCreate: (instance, options) => {
+        // ada ide buat hooks sederhana
+        // save nama item selalu dalam bentuk huruf besar/kecil
+        // memastikan harga (price) lebih besar dari nol:
+        // Default value untuk column tertentu
+      }
+    },
+    sequelize,
+    modelName: 'Items',
+  });
+  return Items;
+
+
+  Ide static method
+
+    saring item berdasarkan condition
+
+  static getItemsByCondition(condition) {
+  return this.findAll({
+    where: {
+      condition: condition
+    }
+  })
+}
+
+saring item berdasarkan harga
+static getItemsByPriceRange(minPrice, maxPrice) {
+  return this.findAll({
+    where: {
+      price: {
+        [Op.between]: [minPrice, maxPrice]
+      }
+    },
+    order: [['price', 'ASC']]
+  })
+}
+
+ide getter
+
+Menampilkan stock statis
+get stockStatus() {
+  if (this.stock === 0) return 'Barang sudah habis'
+  if (this.stock <= 5) return 'Hampir habis'
+  return 'In Stock'
+}
+
+Menampilkan description versi shortnya
+get shortDescription() {
+  return this.description.length > 100 
+    ? this.description.substring(0, 100) + '...' 
+    : this.description
+}
