@@ -42,3 +42,6 @@ npx sequelize-cli db:migrate:undo:all (buat undo)
 npx sequelize-cli seed:generate --name (nama seedernya)
 
 Jangan lupa di seeders kalau ada data json dibaca dulu lalu di map terus di await
+
+
+<---Test run commit-->>
