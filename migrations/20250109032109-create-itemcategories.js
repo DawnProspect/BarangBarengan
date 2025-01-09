@@ -12,7 +12,7 @@ module.exports = {
       CategoryId: {
         type: Sequelize.INTEGER
       },
-      itemId: {
+      ItemId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
