@@ -1,0 +1,47 @@
+[
+    {
+        "name": "T-Shirt Rare",
+        "stock": 10,
+        "imageURL": "https://images.tokopedia.net/img/cache/700/VqbcmM/2024/3/6/a9293adf-0e20-4fbd-977f-7898532df933.jpg",
+        "description": "Kaos polos unisex, nyaman untuk sehari-hari.",
+        "condition": "like-new",
+        "price": 75000,
+        "UserId": 2
+    },
+    {
+        "name": "Smartphone Android Bekas",
+        "stock": 2,
+        "imageURL": "https://images.tokopedia.net/img/cache/700/VqbcmM/2024/6/19/98fe288b-2a24-4cbd-afaf-b920907501dc.jpg",
+        "description": "Smartphone Android dengan RAM 8GB dan kamera 108MP.",
+        "condition": "used",
+        "price": 3500000,
+        "UserId": 2
+    },
+    {
+        "name": "Jam Tangan Kulit",
+        "stock": 10,
+        "imageURL": "https://asset-3.tstatic.net/jualbeli/img/2023/9/2728482/1-794374501-Jam-Tangan-Alexandre-Christie-Strap-Kulit-Bekas-Fungsi-Normal-Harga-Nego--Jogja.jpg",
+        "description": "Jam tangan dengan strap kulit asli, cocok untuk acara formal.",
+        "condition": "used",
+        "price": 500000,
+        "UserId": 2
+    },
+    {
+        "name": "Helm Full Face",
+        "stock": 2,
+        "imageURL": "https://down-id.img.susercontent.com/file/615da25c51cd82ee9c1384bec3fef478",
+        "description": "Helm full face dengan sertifikasi DOT, cocok untuk touring.",
+        "condition": "used",
+        "price": 1200000,
+        "UserId": 2
+    },
+    {
+        "name": "Sepatu Lari",
+        "stock": 1,
+        "imageURL": "https://down-id.img.susercontent.com/file/402a6029e72aa6ef0eaa0637d70d5f1a",
+        "description": "Sepatu lari ringan dengan bantalan empuk.",
+        "condition": "used",
+        "price": 300000,
+        "UserId": 2
+    }
+]

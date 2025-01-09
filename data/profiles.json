@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Rani Setiawati",
+        "address": "Jalan Raya Jakarta Timur No. 12",
+        "phone": "081234567890",
+        "UserId": 2
+    },
+    {
+        "name": "Dwi Anggraini",
+        "address": "Jalan Bogor Barat No. 45",
+        "phone": "081298765432",
+        "UserId": 2
+    },
+    {
+        "name": "Fikri Pratama",
+        "address": "Jalan Medan Barat No. 8",
+        "phone": "082134567890",
+        "UserId": 2
+    },
+    {
+        "name": "Intan Permatasari",
+        "address": "Jalan Bekasi No. 27",
+        "phone": "083456789012",
+        "UserId": 2
+    }
+]

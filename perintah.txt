@@ -25,7 +25,6 @@ migrasi FK: UserId (add-userid-to-item)
 Table: Categories
 npx sequelize-cli model:generate --name Category --attributes name:string 
 
-migrasi FK: UserId (add-userid-to-categories)
 
 isi kolum nya name:string karena di kolom nama ada clothes, electronics, accessories, automotives, sports
 
