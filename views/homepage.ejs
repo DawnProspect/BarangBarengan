@@ -1,91 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #6e8efb, #a777e3);
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images8.alphacoders.com/135/1354012.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
 
-    .form-container {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
 
-    .form-container h1 {
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      color: #444;
-    }
+        .form-container h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #444;
+        }
 
-    .form-container input {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
+        .form-container input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
 
-    .form-container input:focus {
-      border-color: #6e8efb;
-      outline: none;
-      box-shadow: 0 0 5px rgba(110, 142, 251, 0.5);
-    }
+        .form-container input:focus {
+            border-color: #6e8efb;
+            outline: none;
+            box-shadow: 0 0 5px rgba(110, 142, 251, 0.5);
+        }
 
-    .form-container button {
-      width: 104%;
-      padding: 1rem;
-      background: #6e8efb;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+        .form-container button {
+            width: 100%;
+            padding: 1rem;
+            background: #6e8efb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
 
-    .form-container button:hover {
-      background: #5a7de2;
-    }
+        .form-container button:hover {
+            background: #5a7de2;
+        }
 
-    .form-container a {
-      display: block;
-      margin-top: 1rem;
-      text-decoration: none;
-      color: #6e8efb;
-      font-size: 0.9rem;
-      transition: color 0.3s;
-    }
+        .form-container a {
+            display: block;
+            margin-top: 1rem;
+            text-decoration: none;
+            color: #6e8efb;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
 
-    .form-container a:hover {
-      color: #5a7de2;
-    }
-  </style>
+        .form-container a:hover {
+            color: #5a7de2;
+        }
+    </style>
 </head>
 <body>
-  <div class="form-container">
-    <h1>Login</h1>
-    <form action="/login" method="POST">
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="password" name="password" placeholder="Password" required />
-      <a href="/itemsforsale"></a><button type="submit">Login</button>
-    </form>
-    <a href="/register">Register</a>
-  </div>
+    <div class="form-container">
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+            <input type="text" name="username" placeholder="Username" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+        <a href="/register">Register</a>
+    </div>
 </body>
 </html>

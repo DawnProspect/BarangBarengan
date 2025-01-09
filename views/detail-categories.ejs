@@ -126,9 +126,7 @@
     <nav>
         <div class="logo">BarangBareng</div>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="/categories">Home</a></li>
             <li><a href="/categories/<%= stores.id%>/add">Add New Item </a></li>
         </ul>
     </nav>
@@ -142,7 +140,7 @@
                     <div class="card-title">Stock: <%= el.Item.stock %></div>
                     <div class="card-detail">Condition: <%= el.Item.condition %></div>
                     <div class="card-description"><%= el.Item.description %></div>
-                    <div class="card-price">Price: $<%= el.Item.price %></div>
+                    <div class="card-price">Price: <%= formatToRupiah(el.Item.price) %></div>
                 </div>
             </div>
         <% }) %>

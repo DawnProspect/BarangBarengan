@@ -157,6 +157,11 @@
 
     <div class="header">Item Details</div>
     <div class="container">
+        <form action="/itemsforsale" method="get">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search" placeholder="Input Item" >
+            <button type="submit">Search</button>
+          </form>
         <table>
             <thead>
                 <tr>
@@ -175,7 +180,7 @@
                         <td><%= el.name %></td>
                         <td><%= el.stock %></td>
                         <td><%= el.condition %></td>
-                        <td class="price">$<%= el.price %></td>
+                        <td class="price"><%= formatToRupiah(el.price) %></td>
                         <td class="action-buttons">
                             <a href="/itemsforsale/categories/<%= el.id %>/add">
                                 <button class="button">Add Categories</button>

@@ -104,6 +104,19 @@ class Controller {
     // * Dipakai
     static async getAllItems(req, res) { //* Bagian nampilin semua items yang dijual
         try {
+            const { search } = req.query;
+            let options = {};
+            if (search) {
+                options = {
+                    where: {
+                        name: {
+                            [Op.iLike]: `%${search}%`
+                        }
+                    }
+                }
+                const stores = await Items.findAll(options)
+                res.render("all-items", { stores })
+            }
             const id = req.params.id
             const stores = await Items.findAll()
             res.render("all-items", { stores , id, formatToRupiah})

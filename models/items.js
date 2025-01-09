@@ -1,4 +1,5 @@
 'use strict';
+const { formatToRupiah }= require('../helpers/formatter')
 const {
   Model
 } = require('sequelize');
@@ -18,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
 
     get formattedDate() {
       return this.createdAt.toISOString().split('T')[0]
+    }
+
+    formatToRupiah() {
+      return formatToRupiah(this.price)
     }
   }
   // Validasi disini
@@ -97,7 +102,7 @@ module.exports = (sequelize, DataTypes) => {
     hooks: {
       beforeCreate: (instance, options) => {
         // Buat validasi harga tidak boleh dibawah 0
-        if (instance.price <= 0 ) {
+        if (instance.price <= 10000 ) {
           throw new Error('Price must be greater than 0')
         }
       }

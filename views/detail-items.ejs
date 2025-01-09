@@ -149,7 +149,7 @@
             <img src="<%= stores.imageURL %>" alt="<%= stores.name %>">
             <h1><%= stores.name %></h1>
             <p><%= stores.description %></p>
-            <p class="price">$<%= stores.price %></p>
+            <p class="price"><%= formatToRupiah(stores.price) %></p>
             <p>Stock: <%= stores.stock %> | Condition: <%= stores.condition %></p>
             <p>Created: <%= stores.formattedDate %></p>
             <div class="actions">
