@@ -1,5 +1,5 @@
 // const {  } = require("../models") // ! models nanti diubah setelah seedernya selesai
-
+const { Items, Categories, ItemCategories } = require("../models")
 class Controller {
     // * route / untuk menampilkan halaman home
     static async goToHome(req, res) {
@@ -30,9 +30,12 @@ class Controller {
     static async itemDetails(req, res) {
         try {
             // const stores = await Items.findAll()
-            res.render("detail-items", { stores })
+            const data = await Items.findAll({
+            })
+            res.render("detail-items", { data })
         } catch (error) {
             res.send(error)
+            console.log(error);
         }
     }
     // * Bagian tampilkan form untuk tambah item baru
