@@ -1,5 +1,6 @@
 const { Items, Categories, ItemCategories } = require("../models")
 const { formatToRupiah }= require("../helpers/formatter")
+const { Op } = require("sequelize")
 
 class Controller {
     // *Dipakai
@@ -102,10 +103,12 @@ class Controller {
     }
 
     // * Dipakai
-    static async getAllItems(req, res) { //* Bagian nampilin semua items yang dijual
+    static async getAllItems(req, res) {
         try {
             const { search } = req.query;
+            const id = req.params.id;
             let options = {};
+            
             if (search) {
                 options = {
                     where: {
@@ -114,16 +117,34 @@ class Controller {
                         }
                     }
                 }
-                const stores = await Items.findAll(options)
-                res.render("all-items", { stores })
             }
-            const id = req.params.id
-            const stores = await Items.findAll()
-            res.render("all-items", { stores , id, formatToRupiah})
+            
+            const stores = await Items.findAll(options);
+            res.render("all-items", { stores, id, formatToRupiah });
         } catch (error) {
-            res.send(error)
+            res.send(error);
         }
     }
+    // static async getAllItems(req, res) { //* Bagian nampilin semua items yang dijual
+    //     try {
+    //         const search  = req.query;
+    //         const id = req.params.id
+    //         let options = {};
+    //         if (search) {
+    //             options = {
+    //                 where: {
+    //                     name: {
+    //                         [Op.iLike]: `%${search}%`
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         const stores = await Items.findAll(options)
+    //         res.render("all-items", { stores , id, formatToRupiah})
+    //     } catch (error) {
+    //         res.send(error)
+    //     }
+    // }
 
     static async getItemById(req, res){
         try {

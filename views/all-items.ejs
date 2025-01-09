@@ -144,6 +144,37 @@
             justify-content: center;
             gap: 1rem;
         }
+
+        /* New styles for the search bar */
+        .search-bar {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #6e8efb;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        .search-bar button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            background-color: #6e8efb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #5a7de2;
+        }
+
     </style>
 </head>
 <body>
@@ -156,12 +187,16 @@
     </nav>
 
     <div class="header">Item Details</div>
-    <div class="container">
+
+    <!-- Search Bar Section -->
+    <div class="search-bar">
         <form action="/itemsforsale" method="get">
-            <label for="search">Search:</label>
-            <input type="text" id="search" name="search" placeholder="Input Item" >
+            <input type="text" id="search" name="search" placeholder="Search for an item...">
             <button type="submit">Search</button>
-          </form>
+        </form>
+    </div>
+
+    <div class="container">
         <table>
             <thead>
                 <tr>
