@@ -12,33 +12,33 @@
             <form action="/itemsforsale/add" method="POST">
                 <div>
                     <label for="name">Nama Barang:</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" value="<%= item.name %>">
                 </div>
                 <div>
                     <label for="stock">Jumlah stock barang</label>
-                    <input type="number" name="stock" id="stock">
+                    <input type="number" name="stock" id="stock" value="<%= item.Stock %>">
                 </div>
                 <div>
                     <label for="imageURL">Link foto:</label>
-                    <input type="text" name="imageURL" id="imageURL">
+                    <input type="text" name="imageURL" id="imageURL" value="<%= item.imageURL %>">
                 </div>
                 <div>
                     <label for="description">Informasi mengenai produk yang mau dijual:</label><br>
-                    <textarea id="description" name="description" rows="4" cols="50" placeholder="Masukkan informasi produk..."></textarea>
+                    <textarea id="description" name="description" rows="4" cols="50" placeholder="Masukkan informasi produk..." value="<%= item.description %>"></textarea>
                 </div>
                 <div>
                     <label for="condition">Kondisi barang (Tolong pilih terdekat dan sejujurnya):</label>
-                    <select name="condition" id="condition">
+                    <select name="condition" id="condition" value="<%= item.condition %>">
                         <option value="like-new">Like-New</option>
                         <option value="used">Used</option>
                     </select>
                 </div>
                 <div>
                     <label for="price">Harga Barang:</label>
-                    <input type="number" name="price" id="price">
+                    <input type="number" name="price" id="price" value="<%= item.price %>">
                 </div>
                 <!-- ! Kalau mau userId di default jadi 2 pakai hooks -->
-                <button type="submit">Tambahkan Barang</button>
+                <button type="submit">Simpan Edit Barang</button>
         </form>
 </body>
 </html>

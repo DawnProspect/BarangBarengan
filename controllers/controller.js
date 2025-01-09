@@ -1,5 +1,5 @@
-// const {  } = require("../models") // ! models nanti diubah setelah seedernya selesai
 const { Items, Categories, ItemCategories } = require("../models")
+
 class Controller {
     // * route / untuk menampilkan halaman home
     static async goToHome(req, res) {
@@ -18,9 +18,38 @@ class Controller {
         }
     }
     // * Bagian nampilin semua items yang dijual
+    static async getAllCategory(req, res) {
+        try {
+            const stores = await Categories.findAll()
+            res.render("all-categories", { stores })
+        } catch (error) {
+            res.send(error)
+        }
+    }
+    static async getCategoryById(req, res) {
+        try {
+            const id = req.params.id
+            const stores = await Items.findAll({
+                include: [
+                    {
+                        model: ItemCategories,
+                        include: {
+                            model: Categories,
+                            where: {
+                                id: id
+                            }
+                        }
+                    }
+                ]
+            })
+            res.render("detail-categories", { stores })
+        } catch (error) {
+            res.send(error)
+        }
+    }
     static async getAllItems(req, res) {
         try {
-            // const stores = await Items.findAll()
+            const stores = await Items.findAll()
             res.render("all-items", { stores })
         } catch (error) {
             res.send(error)
@@ -30,9 +59,17 @@ class Controller {
     static async itemDetails(req, res) {
         try {
             // const stores = await Items.findAll()
-            const data = await Items.findAll({
+            const stores = await Items.findAll({
+                include: [
+                    {
+                        model: ItemCategories,
+                        include: {
+                            model: Categories,
+                        }
+                    },
+                ]
             })
-            res.render("detail-items", { data })
+            res.render("detail-items", { stores })
         } catch (error) {
             res.send(error)
             console.log(error);
@@ -49,12 +86,15 @@ class Controller {
     // * untuk menambahkan item baru
     static async addNewItem(req, res) {
         try {
-            const { name, code, location, category } = req.body
-            await Store.create({
+            const { name, stock, imageURL, description, condition, price, userId } = req.body
+            await Items.create({
                 name,
-                code,
-                location,
-                category
+                stock,
+                imageURL,
+                description,
+                condition,
+                price,
+                userId // ! kemungkinan perlu diubah ? itemId / userId?
             })
             res.redirect("/itemsforsale")
         } catch (error) {
@@ -64,33 +104,32 @@ class Controller {
     // * Bagian menampilkan form item untuk di edit berdasarkan id
     static async editItemForm(req, res) {
         try {
-            const { storeId, employeeId } = req.params
-            const store = await Store.findByPk(storeId)
-            const employee = await Employee.findByPk(employeeId)
-            res.render("edit-profile", { store, employee })
+            const { itemId } = req.params
+            const item = await Items.findByPk(itemId)
+            res.render("edit-item", { item })
         } catch (error) {
             res.send(error)
         }
     }
-
     // * Bagian mengupdate item yang sudah di edit berdasarkan id
     static async editItem(req, res) {
         try {
-            const { storeId, employeeId } = req.params
-            const { firstName, lastName, dateOfBirth, education, position, salary } = req.body
-            await Employee.update({
-                firstName,
-                lastName,
-                dateOfBirth,
-                education,
-                position,
-                salary
+            const { itemId } = req.params
+            const { name, stock, imageURL, description, condition, price, userId } = req.body
+            await Items.update({
+                name,
+                stock,
+                imageURL,
+                description,
+                condition,
+                price,
+                userId // ! kemungkinan perlu diubah ? itemId / userId?
             }, {
                 where: {
-                    id: employeeId
+                    id: itemId
                 }
             })
-            res.redirect(`/stores/${storeId}`)
+            res.redirect(`/itemsforsale`)
         } catch (error) {
             res.send(error)
         }
@@ -222,10 +261,10 @@ class Controller {
     // * Bagian menghapus store berdasarkan id
     static async deleteItemById(req, res) {
         try {
-            const { storeId } = req.params
-            await Store.destroy({
+            const { itemId } = req.params
+            await Items.destroy({
                 where: {
-                    id: storeId
+                    id: itemId
                 }
             })
             res.redirect("/itemsforsale")

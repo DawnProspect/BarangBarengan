@@ -8,7 +8,8 @@ router.get("/", Controller.goToHome)
 
 // todo menampilkan home page
 router.get("/home", Controller.home) // munculin dua button yaitu button untuk login dan button untuk melihat barang apa saja yang dijual
-
+router.get("/categories", Controller.getAllCategory)
+router.get("/categories/:id", Controller.getCategoryById)
 // todo menampilkan semua item yang dijual
 router.get("/itemsforsale", Controller.getAllItems) // muncul sebagai tombol di homepage
 
@@ -32,7 +33,13 @@ router.get("/profiles/:userId", Controller.getProfilesById) // muncul di page pr
 // todo menampilkan form untuk menambahkan profile/data user baru
 router.get("/profiles/:userId/add", Controller.addProfileForm) // muncul di page profile
 router.post("/profiles/:userId/add", Controller.addNewProfile) // muncul di page profile
-
+// function isAdmin(req, res, next){
+//     if(req.session.userId === 1){
+//         next()
+//     } else {
+//         res.redirect("/profiles")
+//     }
+// }
 // todo menampilkan form untuk edit data user dan mengupdate data user
 router.get("/profiles/:userId/edit", Controller.editProfileForm) // muncul di page profile user
 router.post("/profiles/:userId/edit", Controller.editProfile) // muncul di page profile user
