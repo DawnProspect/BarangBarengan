@@ -19,6 +19,7 @@ router.post("/itemsforsale/categories/:id/add", Controller.addItemtoCategoryData
 router.get("/itemsforsale/categories/:id/edit", Controller.editItemForm);
 router.post("/itemsforsale/categories/:id/edit", Controller.editItemData);
 router.get("/itemsforsale/categories/:id/delete", Controller.deleteItem);
+router.post('/itemsforsale/:id/buy', Controller.buyItem);
 
 
 

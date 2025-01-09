@@ -137,8 +137,6 @@
         <div class="logo">BarangBareng</div>
         <ul>
             <li><a href="/categories">Home</a></li>
-            <li><a href="#">Stores</a></li>
-            <li><a href="#">Contact</a></li>
             <li><a href="/itemsforsale">See All Items</a></li>
         </ul>
     </nav>
@@ -146,6 +144,11 @@
     <div class="container">
         <div class="form-container">
             <h1>Add New Item</h1>
+            <% if (locals.error) { %>
+                <div style="color: red; background: rgba(255, 0, 0, 0.1); padding: 10px; border-radius: 5px; margin: 10px 0;">
+                    <%= error %>
+                </div>
+            <% } %>            
             <form action="/categories/<%= id %>/add" method="POST">
                 <div>
                     <label for="name">Nama Barang:</label>

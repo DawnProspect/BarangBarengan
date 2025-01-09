@@ -188,3 +188,11 @@ get shortDescription() {
     ? this.description.substring(0, 100) + '...' 
     : this.description
 }
+
+Track perubahan:
+
+addItembyCategoryData (tambahin error)
+add-item.ejs tambahin error
+
+
+Mau tunjukin validasi di ejs

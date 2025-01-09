@@ -103,7 +103,7 @@ module.exports = (sequelize, DataTypes) => {
       beforeCreate: (instance, options) => {
         // Buat validasi harga tidak boleh dibawah 0
         if (instance.price <= 10000 ) {
-          throw new Error('Price must be greater than 0')
+          throw new Error('Price must be greater than Rp 10.000')
         }
       }
     },

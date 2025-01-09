@@ -141,6 +141,13 @@
                     <div class="card-detail">Condition: <%= el.Item.condition %></div>
                     <div class="card-description"><%= el.Item.description %></div>
                     <div class="card-price">Price: <%= formatToRupiah(el.Item.price) %></div>
+                    <% if (el.Item.stock > 0) { %>
+                        <form action="/itemsforsale/<%= el.Item.id %>/buy" method="POST">
+                            <button type="submit" style="background: #6e8efb; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; transition: all 0.3s ease;">Buy Item</button>
+                        </form>
+                    <% } else { %>
+                        <button disabled style="background: #cccccc; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: not-allowed;">Out of Stock</button>
+                    <% } %>
                 </div>
             </div>
         <% }) %>

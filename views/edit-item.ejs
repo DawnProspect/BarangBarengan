@@ -93,22 +93,27 @@
 <body>
     <div class="form-container">
         <h1>Edit Item</h1>
+        <% if (locals.error) { %>
+            <div style="color: red; background: rgba(255, 0, 0, 0.1); padding: 10px; border-radius: 5px; margin: 10px 0;">
+                <%= error %>
+            </div>
+        <% } %>  
         <form action="/itemsforsale/categories/<%= stores.id %>/edit" method="POST">
             <div>
                 <label for="name">Product Name:</label>
-                <input type="text" name="name" id="name" value="<%= stores.name %>" required>
+                <input type="text" name="name" id="name" value="<%= stores.name %>">
             </div>
             <div>
                 <label for="stock">Stock Quantity:</label>
-                <input type="number" name="stock" id="stock" value="<%= stores.stock %>" required>
+                <input type="number" name="stock" id="stock" value="<%= stores.stock %>">
             </div>
             <div>
                 <label for="imageURL">Image URL:</label>
-                <input type="url" name="imageURL" id="imageURL" value="<%= stores.imageURL %>" required>
+                <input type="url" name="imageURL" id="imageURL" value="<%= stores.imageURL %>">
             </div>
             <div>
                 <label for="description">Product Description:</label>
-                <textarea name="description" id="description" required><%= stores.description %></textarea>
+                <textarea name="description" id="description"><%= stores.description %></textarea>
             </div>
             <div>
                 <label for="condition">Condition:</label>
@@ -119,7 +124,7 @@
             </div>
             <div>
                 <label for="price">Price:</label>
-                <input type="number" name="price" id="price" value="<%= stores.price %>" required>
+                <input type="number" name="price" id="price" value="<%= stores.price %>">
             </div>
             <input type="submit" value="Save Changes">
         </form>
