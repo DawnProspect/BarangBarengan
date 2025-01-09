@@ -45,3 +45,7 @@ Jangan lupa di seeders kalau ada data json dibaca dulu lalu di map terus di awai
 
 
 <---Test run commit-->>
+
+Catatan:
+Users belum ditentuin id nya
+ItemCategories juga belum ditentuin
