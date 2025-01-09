@@ -1,44 +1,132 @@
-<!-- Nunjuikin form penambahan item (jangan lupa tambakan validasi nanti di models) -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Item</title>
+    <title>Edit Item</title>
+    <style>
+        /* Resetting default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://images8.alphacoders.com/135/1354012.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #6e8efb;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #5a7de2;
+        }
+
+        input[type="submit"]:active {
+            background-color: #4868c2;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            margin-top: 2rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Add New Items</h1>
-            <form action="/itemsforsale/add" method="POST">
-                <div>
-                    <label for="name">Nama Barang:</label>
-                    <input type="text" name="name" id="name" value="<%= item.name %>">
-                </div>
-                <div>
-                    <label for="stock">Jumlah stock barang</label>
-                    <input type="number" name="stock" id="stock" value="<%= item.Stock %>">
-                </div>
-                <div>
-                    <label for="imageURL">Link foto:</label>
-                    <input type="text" name="imageURL" id="imageURL" value="<%= item.imageURL %>">
-                </div>
-                <div>
-                    <label for="description">Informasi mengenai produk yang mau dijual:</label><br>
-                    <textarea id="description" name="description" rows="4" cols="50" placeholder="Masukkan informasi produk..." value="<%= item.description %>"></textarea>
-                </div>
-                <div>
-                    <label for="condition">Kondisi barang (Tolong pilih terdekat dan sejujurnya):</label>
-                    <select name="condition" id="condition" value="<%= item.condition %>">
-                        <option value="like-new">Like-New</option>
-                        <option value="used">Used</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="price">Harga Barang:</label>
-                    <input type="number" name="price" id="price" value="<%= item.price %>">
-                </div>
-                <!-- ! Kalau mau userId di default jadi 2 pakai hooks -->
-                <button type="submit">Simpan Edit Barang</button>
+    <div class="form-container">
+        <h1>Edit Item</h1>
+        <form action="/itemsforsale/categories/<%= stores.id %>/edit" method="POST">
+            <div>
+                <label for="name">Product Name:</label>
+                <input type="text" name="name" id="name" value="<%= stores.name %>" required>
+            </div>
+            <div>
+                <label for="stock">Stock Quantity:</label>
+                <input type="number" name="stock" id="stock" value="<%= stores.stock %>" required>
+            </div>
+            <div>
+                <label for="imageURL">Image URL:</label>
+                <input type="url" name="imageURL" id="imageURL" value="<%= stores.imageURL %>" required>
+            </div>
+            <div>
+                <label for="description">Product Description:</label>
+                <textarea name="description" id="description" required><%= stores.description %></textarea>
+            </div>
+            <div>
+                <label for="condition">Condition:</label>
+                <select name="condition" id="condition" required>
+                    <option value="like-new" <%= stores.condition === 'like-new' ? 'selected' : '' %>>Like-New</option>
+                    <option value="used" <%= stores.condition === 'used' ? 'selected' : '' %>>Used</option>
+                </select>
+            </div>
+            <div>
+                <label for="price">Price:</label>
+                <input type="number" name="price" id="price" value="<%= stores.price %>" required>
+            </div>
+            <input type="submit" value="Save Changes">
         </form>
+    </div>
+
+    <div class="footer">
+    </div>
 </body>
+
 </html>

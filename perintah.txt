@@ -52,6 +52,16 @@ ItemCategories juga belum ditentuin
 
 Validasi:
 
+backup:
+Items.init({
+    name: DataTypes.STRING,
+    stock: DataTypes.INTEGER,
+    imageURL: DataTypes.INTEGER,
+    description: DataTypes.STRING,
+    condition: DataTypes.STRING,
+    price: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER
+
 Items.init({
     name: {
         type: DataTypes.STRING,

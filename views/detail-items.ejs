@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Category</title>
+    <title>Detail Item</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +12,7 @@
             background-size: cover;
             margin: 0;
             padding: 0;
+            color: #fff;
         }
 
         nav {
@@ -57,62 +59,69 @@
         .container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
             padding: 2rem;
         }
 
-        .form-container {
+        .card {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 2rem;
             width: 100%;
-            max-width: 400px;
+            max-width: 600px;
             text-align: center;
         }
 
-        .form-container h2 {
-            font-size: 1.8rem;
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            font-size: 1rem;
-            color: #333;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        select {
+        .card img {
             width: 100%;
-            padding: 0.8rem;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
+            max-width: 300px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card img:hover {
+            transform: scale(1.05);
+        }
+
+        .card h1 {
+            font-size: 2rem;
             color: #333;
-            transition: border 0.3s;
+            margin-bottom: 1rem;
         }
 
-        select:focus {
-            border-color: #6e8efb;
-        }
-
-        input[type="submit"] {
-            background: #6e8efb;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            cursor: pointer;
+        .card p {
             font-size: 1rem;
-            transition: background 0.3s;
+            color: #666;
+            margin-bottom: 1rem;
         }
 
-        input[type="submit"]:hover {
-            background: #5a7de2;
+        .card .price {
+            font-weight: bold;
+            color: #28a745;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card .actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .card .button {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            background-color: #6e8efb;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .card .button:hover {
+            background-color: #5a7de2;
         }
 
         .footer {
@@ -123,30 +132,35 @@
         }
     </style>
 </head>
-<body>
 
+<body>
     <nav>
         <div class="logo">BarangBareng</div>
         <ul>
             <li><a href="/categories">Home</a></li>
+            <li><a href="#">Stores</a></li>
+            <li><a href="#">Contact</a></li>
             <li><a href="/itemsforsale">See All Items</a></li>
         </ul>
     </nav>
 
     <div class="container">
-        <div class="form-container">
-            <h2>Add Category to Item</h2>
-            <form action="/itemsforsale/categories/<%= id%>/add" method="POST">
-                <label for="category">Category Barang</label>
-                <select name="category" id="category">
-                    <% stores.forEach((el) => { %>
-                        <option value="<%=el.id%>"><%=el.name%></option>
-                    <% }) %>
-                </select>
-                <input type="submit" value="Add Category">
-            </form>
+        <div class="card">
+            <img src="<%= stores.imageURL %>" alt="<%= stores.name %>">
+            <h1><%= stores.name %></h1>
+            <p><%= stores.description %></p>
+            <p class="price">$<%= stores.price %></p>
+            <p>Stock: <%= stores.stock %> | Condition: <%= stores.condition %></p>
+            <p>Created: <%= stores.formattedDate %></p>
+            <div class="actions">
+                <a href="/itemsforsale/categories/<%= stores.id %>/edit" class="button">Edit</a>
+                <a href="/itemsforsale/categories/<%= stores.id %>/delete" class="button">Delete</a>
+            </div>
         </div>
     </div>
 
+    <div class="footer">
+    </div>
 </body>
+
 </html>
